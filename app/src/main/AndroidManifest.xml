@@ -15,7 +15,7 @@
  limitations under the License.-->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.emojify">
+    package="io.monteirodev.emojify">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -31,7 +31,7 @@
         android:theme="@style/AppTheme">
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
+            android:authorities="io.monteirodev.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

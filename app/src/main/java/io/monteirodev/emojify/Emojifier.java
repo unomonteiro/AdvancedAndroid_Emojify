@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.example.android.emojify;
+package io.monteirodev.emojify;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -33,7 +33,7 @@ class Emojifier {
 
     // TODO (3): Change all Log statements to Timber logs and remove the LOG_TAG variable
 
-    private static final float EMOJI_SCALE_FACTOR = .9f;
+    private static final float EMOJI_SCALE_FACTOR = 1.1f;
     private static final double SMILING_PROB_THRESHOLD = .15;
     private static final double EYE_OPEN_PROB_THRESHOLD = .5;
 

@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.example.android.emojify;
+package io.monteirodev.emojify;
 
 
 import android.Manifest;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_STORAGE_PERMISSION = 1;
 
-    private static final String FILE_PROVIDER_AUTHORITY = "com.example.android.fileprovider";
+    private static final String FILE_PROVIDER_AUTHORITY = "io.monteirodev.fileprovider";
 
     @BindView(R.id.image_view) ImageView mImageView;
 
@@ -62,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.title_text_view) TextView mTitleTextView;
 
     private String mTempPhotoPath;
-
+    private String mFinalPhotoPath = "";
     private Bitmap mResultsBitmap;
-
+    private Boolean mImageIsSaved = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set the new bitmap to the ImageView
         mImageView.setImageBitmap(mResultsBitmap);
+        mImageIsSaved = false;
     }
 
 
@@ -204,7 +205,11 @@ public class MainActivity extends AppCompatActivity {
         BitmapUtils.deleteImageFile(this, mTempPhotoPath);
 
         // Save the image
-        BitmapUtils.saveImage(this, mResultsBitmap);
+        if (mImageIsSaved == false) {
+            mFinalPhotoPath = BitmapUtils.saveImage(this, mResultsBitmap);
+            mImageIsSaved = true;} else {
+            Toast.makeText(this, "Image is already saved ;-)", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -216,10 +221,14 @@ public class MainActivity extends AppCompatActivity {
         BitmapUtils.deleteImageFile(this, mTempPhotoPath);
 
         // Save the image
-        BitmapUtils.saveImage(this, mResultsBitmap);
+        if (mImageIsSaved == false) {
+            mFinalPhotoPath = BitmapUtils.saveImage(this, mResultsBitmap);
+            mImageIsSaved = true;} else {
+            Toast.makeText(this, "Image is already saved ;-)", Toast.LENGTH_SHORT).show();
+        }
 
         // Share the image
-        BitmapUtils.shareImage(this, mTempPhotoPath);
+        BitmapUtils.shareImage(this, mFinalPhotoPath);
     }
 
     /**
